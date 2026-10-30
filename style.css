@@ -1,0 +1,872 @@
+/* ==========================================================================
+   C.S. 루이스 「스크루테이프의 편지」 캠퍼스 나눔 스타일시트 (정돈된 도서 에디토리얼)
+   ========================================================================== */
+
+:root {
+  --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --font-serif: 'Noto Serif KR', Georgia, 'Batang', serif;
+
+  --header-height: 56px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+}
+
+/* Light Theme */
+body.theme-light {
+  --bg-app: #fbfaf7;
+  --bg-card: #ffffff;
+  --bg-subtle: #f1f3f5;
+  --border-color: #e5e7eb;
+  --border-darker: #cbd5e1;
+
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --text-faint: #9ca3af;
+
+  --primary: #8b1e2a; /* 옥스퍼드 와인 */
+  --primary-hover: #701822;
+  --primary-light: #fbf1f2;
+
+  --guide-bg: #faf7f2;
+  --guide-border: #e6ded4;
+}
+
+/* Sepia Theme (도서 페이퍼) */
+body.theme-sepia {
+  --bg-app: #f4ecdc;
+  --bg-card: #faf4e8;
+  --bg-subtle: #ebdfc9;
+  --border-color: #dfd2b9;
+  --border-darker: #c9b999;
+
+  --text-main: #33261d;
+  --text-muted: #736152;
+  --text-faint: #9c8978;
+
+  --primary: #8c3b2b;
+  --primary-hover: #6e2c1e;
+  --primary-light: #eee1cf;
+
+  --guide-bg: #efe4cf;
+  --guide-border: #dcceb3;
+}
+
+/* Dark Theme */
+body.theme-dark {
+  --bg-app: #141619;
+  --bg-card: #1e2126;
+  --bg-subtle: #272b32;
+  --border-color: #2f343d;
+  --border-darker: #3e4450;
+
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --text-faint: #6b7280;
+
+  --primary: #c2414c;
+  --primary-hover: #e0535f;
+  --primary-light: #331d22;
+
+  --guide-bg: #24272d;
+  --guide-border: #383e49;
+}
+
+/* Base Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* Password Gate */
+.gate-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background-color: var(--bg-app);
+}
+
+html.unlocked .gate-screen {
+  display: none;
+}
+
+.gate-form {
+  width: min(100%, 22rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+}
+
+.gate-title {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.gate-input {
+  padding: 0.6rem 0;
+  border: none;
+  border-bottom: 1px solid var(--border-darker);
+  background: transparent;
+  outline: none;
+  text-align: center;
+}
+
+.gate-input:focus {
+  border-bottom-color: var(--primary);
+}
+
+.gate-btn {
+  padding: 0.6rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  background-color: var(--primary);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.gate-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.gate-error {
+  font-size: 0.88rem;
+  color: var(--primary);
+}
+
+.gate-error[hidden] {
+  display: none;
+}
+
+/* Header */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-height);
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header-inner {
+  max-width: 1480px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.brand-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  color: var(--primary);
+}
+
+.brand-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+}
+
+.header-btn {
+  background: none;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+.header-btn:hover {
+  color: var(--text-main);
+}
+
+.header-btn.active {
+  color: var(--primary);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-group {
+  display: flex;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+}
+
+.ctrl-btn {
+  background: none;
+  border: none;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.ctrl-btn:hover {
+  color: var(--text-main);
+}
+
+.ctrl-btn.active {
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* Main Container */
+.app-main {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  min-height: calc(100vh - var(--header-height));
+}
+
+.view-panel {
+  display: none;
+}
+
+.view-panel.active {
+  display: block;
+}
+
+/* ==========================================================================
+   VIEW 1: HOME (Intro & 31 Letters)
+   ========================================================================== */
+.home-hero {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 9vw, 6.5rem) 0 clamp(3.5rem, 8vw, 6rem);
+  text-align: center;
+}
+
+.hero-eyebrow {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 6.5vw, 4.25rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+}
+
+.hero-verse {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.8;
+  color: var(--primary);
+  margin-top: 2.25rem;
+}
+
+.hero-verse cite {
+  display: block;
+  margin-top: 0.3rem;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-style: normal;
+  color: var(--text-muted);
+}
+
+/* 제목을 내용 위에 두는 공통 구성 */
+.home-section {
+  max-width: 72rem;
+  margin: 0 auto clamp(4.5rem, 9vw, 7.5rem);
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.intro-content {
+  max-width: 41rem;
+  margin: 2.5rem auto 0;
+}
+
+.intro-content p {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.95;
+  margin-bottom: 1.35rem;
+}
+
+.intro-content .intro-lead {
+  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.65;
+  letter-spacing: -0.015em;
+  margin-bottom: 2rem;
+}
+
+.intro-content .intro-footnote {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+}
+
+.term {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* 편지 목차 */
+.topic-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.search-wrap {
+  width: min(100%, 24rem);
+}
+
+.search-wrap input {
+  width: 100%;
+  padding: 0.5rem 0;
+  border: none;
+  border-bottom: 1px solid var(--border-darker);
+  border-radius: 0;
+  background: transparent;
+  outline: none;
+  font-size: 0.92rem;
+}
+
+.search-wrap input::placeholder {
+  color: var(--text-faint);
+}
+
+.search-wrap input:focus {
+  border-bottom-color: var(--primary);
+}
+
+.letters-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr));
+  gap: 2.75rem clamp(2rem, 4vw, 3.5rem);
+  align-content: start;
+}
+
+.letter-item-card {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+  column-gap: 0.75rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.item-num {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--primary);
+  font-variant-numeric: lining-nums;
+}
+
+.item-summary {
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  color: var(--text-main);
+  margin-bottom: 0.45rem;
+  transition: color 0.15s ease;
+}
+
+.item-sub {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.letter-item-card:hover .item-summary,
+.letter-item-card:focus-visible .item-summary {
+  color: var(--primary);
+}
+
+.letter-item-card:focus-visible .item-summary {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.letters-empty {
+  grid-column: 1 / -1;
+  padding: 3rem 0;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   VIEW 2: WORKSPACE (2-Column Split: Reading & Note)
+   ========================================================================== */
+.mobile-tabs {
+  display: none;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  margin-bottom: 1rem;
+  gap: 4px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  background: transparent;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.tab-btn.active {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+.split-container {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+/* Left Pane: Reading (Book + Guide) */
+.pane-reading {
+  flex: 1.35;
+  min-width: 0;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.reading-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-subtle);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.text-link-btn {
+  background: none;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.text-link-btn:hover {
+  color: var(--text-main);
+}
+
+.chapter-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.arrow-btn {
+  padding: 0.3rem 0.65rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.arrow-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.arrow-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.chapter-select {
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-card);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+  max-width: 150px;
+}
+
+/* Banner */
+.chapter-summary-banner {
+  padding: 1.5rem 2rem 1.25rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-subtle);
+}
+
+.chap-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.4rem;
+}
+
+.chap-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
+}
+
+.chap-sub {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Reading Scroll Area */
+.reading-scroll-area {
+  padding: 2.25rem 2rem;
+  font-size: 16.5px;
+}
+
+/* Book Section */
+.book-article {
+  margin-bottom: 3.5rem;
+}
+
+.section-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.letter-greeting {
+  font-family: var(--font-serif);
+  font-size: 1.25em;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+}
+
+.book-body {
+  font-family: var(--font-serif);
+  line-height: 1.9;
+  color: var(--text-main);
+  text-align: justify;
+}
+
+.book-body p {
+  margin-bottom: 1.4em;
+  text-indent: 1em;
+}
+
+.book-body p:first-of-type {
+  text-indent: 0;
+}
+
+.letter-signature {
+  font-family: var(--font-serif);
+  font-size: 1em;
+  color: var(--text-muted);
+  margin-top: 2rem;
+  text-align: right;
+  line-height: 1.6;
+}
+
+.letter-signature strong {
+  font-size: 1.15em;
+  color: var(--primary);
+}
+
+.footnotes-box {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.85em;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.footnotes-box.hidden {
+  display: none;
+}
+
+.footnote-item {
+  margin-bottom: 0.5rem;
+}
+
+.footnote-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Guide Section (Placed right after the book) */
+.guide-article {
+  background-color: var(--guide-bg);
+  border: 1px solid var(--guide-border);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 2rem;
+}
+
+.guide-label {
+  color: var(--primary);
+  border-bottom-color: var(--guide-border);
+}
+
+.guide-content {
+  font-family: var(--font-serif);
+  font-size: 0.95em;
+  line-height: 1.85;
+  color: var(--text-main);
+  white-space: pre-line;
+}
+
+/* Right Pane: Personal Notepad */
+.pane-note {
+  flex: 1;
+  min-width: 360px;
+  position: sticky;
+  top: calc(var(--header-height) + 1.5rem);
+  height: calc(100vh - var(--header-height) - 3rem);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.note-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-subtle);
+}
+
+.note-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.note-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.current-chap-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--primary);
+  background-color: var(--primary-light);
+  padding: 0.15rem 0.45rem;
+  border-radius: 2px;
+}
+
+.copy-btn {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.copy-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.copy-btn.copied {
+  background-color: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+.note-guide-hint {
+  padding: 0.65rem 1.25rem;
+  background-color: var(--bg-app);
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.note-body-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.25rem;
+}
+
+.note-editor {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  resize: none;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-main);
+}
+
+.note-editor::placeholder {
+  color: var(--text-faint);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 980px) {
+  .split-container {
+    flex-direction: column;
+  }
+
+  .mobile-tabs {
+    display: flex;
+  }
+
+  .pane-note {
+    position: static;
+    height: 550px;
+    min-width: 100%;
+  }
+
+  .split-container.tab-mode-reading .pane-note {
+    display: none;
+  }
+
+  .split-container.tab-mode-reading .pane-reading {
+    display: block;
+  }
+
+  .split-container.tab-mode-note .pane-reading {
+    display: none;
+  }
+
+  .split-container.tab-mode-note .pane-note {
+    display: flex;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-main {
+    padding: 1rem 0.75rem;
+  }
+
+  .header-inner {
+    padding: 0 0.75rem;
+  }
+
+  .brand-title {
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+
+  .brand-sub,
+  .header-nav {
+    display: none;
+  }
+
+  .header-controls {
+    gap: 0.35rem;
+  }
+
+  .ctrl-btn {
+    padding: 0.25rem 0.4rem;
+  }
+
+  .reading-scroll-area {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .chapter-summary-banner {
+    padding: 1.25rem;
+  }
+}

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>스크루테이프의 편지 | 캠퍼스 나눔</title>
+  <meta name="description" content="C.S. 루이스의 스크루테이프의 편지 원본과 설명서, 그리고 나눔을 위한 개인 메모장">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  <script>
+    try {
+      if (localStorage.getItem('screwtape_unlocked') === '1') {
+        document.documentElement.classList.add('unlocked');
+      }
+    } catch (e) {}
+  </script>
+</head>
+<body class="theme-light">
+
+  <!-- 비밀번호 화면 -->
+  <div class="gate-screen" id="gateScreen">
+    <form class="gate-form" id="gateForm">
+      <h1 class="gate-title">스크루테이프의 편지</h1>
+      <input type="password" id="gateInput" class="gate-input" placeholder="비밀번호" aria-label="비밀번호" autocomplete="off" autofocus />
+      <button type="submit" class="gate-btn">입장</button>
+      <p class="gate-error" id="gateError" hidden>비밀번호가 맞지 않습니다.</p>
+    </form>
+  </div>
+
+  <!-- 상단 네비게이션 바 -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand" id="brandHomeBtn" role="button" tabindex="0">
+        <span class="brand-title">스크루테이프의 편지</span>
+        <span class="brand-sub">캠퍼스 나눔</span>
+      </div>
+
+      <nav class="header-nav">
+        <button id="navHomeBtn" class="header-btn active">주제 목록</button>
+      </nav>
+
+      <div class="header-controls">
+        <div class="btn-group theme-controls">
+          <button id="themeLightBtn" class="ctrl-btn active">라이트</button>
+          <button id="themeSepiaBtn" class="ctrl-btn">세피아</button>
+          <button id="themeDarkBtn" class="ctrl-btn">다크</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+
+    <!-- 1. 메인 화면: 책 소개 & 편지별 주제 목록 -->
+    <section id="viewHome" class="view-panel active">
+      
+      <!-- 표제 -->
+      <header class="home-hero">
+        <p class="hero-eyebrow">C.S. 루이스 · 캠퍼스 나눔</p>
+        <h1 class="hero-title">스크루테이프의 편지</h1>
+        <blockquote class="hero-verse">
+          “마귀의 궤계를 능히 대적하기 위하여 하나님의 전신갑주를 입으라.”
+          <cite>에베소서 6:11</cite>
+        </blockquote>
+      </header>
+
+      <!-- 책 소개 -->
+      <section class="home-section">
+        <h2 class="section-title">이 책을 읽기 전에</h2>
+        <div class="intro-content">
+          <p class="intro-lead">「스크루테이프의 편지」는 20세기 최고의 기독교 변증학자인 C.S 루이스의 깊은 통찰력이 묻어 있는 작품입니다.</p>
+
+          <p>고참 악마인 스크루테이프가 자신의 조카이자 신참 악마인 웜우드에게 보내는 31편의 편지들을 묶은 반어적 가상 소설입니다. 이 책에서 주인공 스크루테이프는 악마가 맡은 사람을 <em class="term">‘환자’</em>라고 부르고, 예수님을 <em class="term">‘원수’</em>라고 부릅니다. 이 점을 유의해야 합니다. 해서 이 책에서 ‘환자’라는 말이 나오면 사단이 무너뜨리려고 노리고 있는 사람을 의미하고 ‘원수’라는 말이 나오면 예수님, 하나님을 의미합니다.</p>
+
+          <p>악마의 시점에서 말하는 것이라, 저자가 어떤 입장을 지지하는 것을 반대로 강조하고 있음을 기억하지 않으면 악마의 충고를 곧이 받아들이는 것이 됩니다.</p>
+
+          <p>루이스는 이 책의 서문에서, 악마에 대해 생각할 때 사람들이 빠지기 쉬운 오류 두 가지를 지적했습니다.</p>
+
+          <p>하나는 악마의 존재를 믿지 않는 것이고, 다른 하나는 악마를 믿되 지나치고 과민하게 관심을 쏟는 것입니다.</p>
+
+          <p>마귀는 뿔이 달리고 허연 이를 드러내며 누구나 알 수 있도록 “나는 마귀다!” 하는 식으로 나타나지 않습니다. 교묘하게 인간의 생각과 심리를 파고들어서 이런 생각과 심리가 마귀가 주는 생각이라는 것을 알아차리지 못하게 합니다.</p>
+
+          <p>이 책을 통해 마귀가 그리스도인들을 공격하기 위해 어떤 전술을 가지고 있는지를 살피고 그 전술에 대처 하는 방법을 알아보기로 합니다.</p>
+
+          <p class="intro-footnote">(책에 대한 요약본이나 설명서는 그 책에 대한 ‘전체’가 결코 아닙니다. 숙독 정독하는 가운데 세밀한 부분에 숨어 있는 깊은 통찰력을 얻습니다. 이 설명서는 그저 작은 가이드일 뿐입니다. 책이 난해한 부분이 있고 그에 따라 번역이 매끄럽지가 않아 성도들이 좀 더 잘 이해할 수 있도록 작은 가이드 책자를 냅니다)</p>
+        </div>
+      </section>
+
+      <!-- 편지별 주제 목록 -->
+      <section class="home-section">
+        <div class="topic-intro">
+          <h2 class="section-title">서른한 통의 편지</h2>
+          <div class="search-wrap">
+            <input type="text" id="topicSearchInput" placeholder="주제나 단어 검색" aria-label="주제나 단어 검색" />
+          </div>
+        </div>
+
+        <div class="letters-list" id="lettersGrid">
+          <!-- JS로 31개 목차 렌더링 -->
+        </div>
+      </section>
+    </section>
+
+
+    <!-- 2. 워크스페이스 화면: 2열 분할 (왼쪽: 책/설명서, 오른쪽: 개인 나눔 메모장) -->
+    <section id="viewWorkspace" class="view-panel">
+      
+      <!-- 모바일 전환 탭 (화면이 좁을 때만 노출) -->
+      <div class="mobile-tabs" id="mobileTabs">
+        <button id="tabBtnReading" class="tab-btn active">본문 및 설명서</button>
+        <button id="tabBtnNote" class="tab-btn">나눔 메모장</button>
+      </div>
+
+      <div class="split-container" id="splitContainer">
+        
+        <!-- 왼쪽 열: 책 원본 본문 + 설명서 합본 내용 -->
+        <div class="pane-reading" id="paneReading">
+          
+          <!-- 읽기 상단 툴바 -->
+          <div class="reading-bar">
+            <button id="backToListBtn" class="text-link-btn">← 주제 목록</button>
+
+            <div class="chapter-nav">
+              <button id="prevBtn" class="arrow-btn">이전</button>
+              <select id="letterSelectDropdown" class="chapter-select"></select>
+              <button id="nextBtn" class="arrow-btn">다음</button>
+            </div>
+          </div>
+
+          <!-- 편지 제목 및 요약 헤더 -->
+          <div class="chapter-summary-banner">
+            <div class="chap-badge" id="chapBadge">제 1 편</div>
+            <h1 class="chap-title" id="chapTitle">「사람들에게 깊이 있는 논증보다는 일상적인 생활의 멍에로 시선을 붙들라!」</h1>
+            <p class="chap-sub" id="chapSub">→ 마귀는 깊이 있는 성찰을 못하게 하고 일상적인 생활 속에 파묻히게 한다는 것입니다.</p>
+          </div>
+
+          <!-- 읽기 본문 영역 -->
+          <div class="reading-scroll-area" id="readingScrollArea">
+            
+            <!-- 1) C.S. 루이스 본문 원본 -->
+            <article class="book-article">
+              <div class="section-label">본문</div>
+              <div class="letter-greeting" id="bookGreeting">사랑하는 웜우드에게</div>
+              <div class="book-body" id="bookBody">
+                <!-- 문단들 -->
+              </div>
+              <div class="letter-signature" id="bookSignature">
+                너를 아끼는 삼촌,<br>
+                <strong>Screwtape</strong>
+              </div>
+              <div class="footnotes-box hidden" id="bookFootnotes">
+                <!-- 각주 -->
+              </div>
+            </article>
+
+            <!-- 2) 설명서 합본 내용 (책 원본 바로 뒤에 배치) -->
+            <article class="guide-article" id="guideArticle">
+              <div class="section-label guide-label">설명서</div>
+              <div class="guide-content" id="guideContent">
+                <!-- 설명서 합본 내용 원문 -->
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- 오른쪽 열: 나눔을 위한 개인 메모장 (단순하고 큰 메모장) -->
+        <div class="pane-note" id="paneNote">
+          <div class="note-top-bar">
+            <div class="note-title-wrap">
+              <span class="note-title">나눔 메모</span>
+              <span class="current-chap-label" id="noteChapLabel">제 1 편</span>
+            </div>
+            <button id="copyNoteBtn" class="copy-btn">복사</button>
+          </div>
+
+          <div class="note-guide-hint">
+            ex) 이 주제를 고른 이유, 읽고 느낀 점, 나누고 싶은 생각 등을 자유롭게 메모하세요.
+          </div>
+
+          <div class="note-body-wrap">
+            <textarea id="noteTextarea" class="note-editor" placeholder="여기에 메모를 입력하세요..."></textarea>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
